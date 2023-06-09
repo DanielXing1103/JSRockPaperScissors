@@ -3,27 +3,86 @@
 <html>
     <head>
         <title>RPS</title>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+        <style>
+            body{
+                background-color: black;
+                color: white;
+                font-family: Roboto, Arial;
+                text-align: center  ;
+
+            }
+            .title{
+                font-size: 50px;
+                font-weight: bold;
+                text-align:center;
+            }
+
+
+            .move{
+                width: 150px;
+                height: 150px;
+                background-color: transparent;
+                border: 4px solid;
+                border-color: white;
+                border-radius: 50%;
+                margin:13px;
+                cursor: pointer;
+            }
+            .move:hover{
+                transition: 0.01s;
+                background-color: white;
+            }
+            .move:active{
+                opacity: 0.9;
+            }
+            .icon{
+                width: 75px;
+            }
+            .reset{
+                background-color: white;
+                border: none;
+                font-size: 15px;
+                padding: 8px 15px;
+                cursor: pointer;
+            }
+
+        </style>
     </head>
     <body>
-        <p>ROCK PAPER SCISSOR</p>
-        <button onclick="
-            RPS('Rock')
-        ">Rock</button>
-        <button onclick="
-            RPS('Paper')
-        ">Paper</button>
-        <button onclick="
-            RPS('Scissor')
-        ">Scissor</button>
+        <p class="title">ROCK PAPER SCISSOR</p>
+            <button 
+            
+            class = "move" 
+            onclick="RPS('Rock')"
+
+            ><img class = "icon" src="images/rock-emoji.png"></button>
+
+            <button 
+
+            class = "move" 
+            onclick="RPS('Paper')"
+
+            ><img class = "icon" src="images/paper-emoji.png"></button>
+
+            <button 
+
+            class = "move" 
+            onclick="RPS('Scissor')"
+            
+            ><img class = "icon" src="images/scissors-emoji.png"></button>
+
+
 
         <p class="jsResult">Result: </p>
         <p class="jsmove">Your move-  ---  - computer move</p>
         <p class="jsScore"></p>
 
-        <button onclick="
-            reset()
-            
-        ">reset score</button>
+        <button 
+        onclick="reset()"
+        class="reset"
+        
+        >reset score</button>
 
         <script>
             let score=JSON.parse(localStorage.getItem(`score`))||{
