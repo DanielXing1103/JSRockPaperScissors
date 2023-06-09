@@ -4,193 +4,44 @@
     <head>
         <title>RPS</title>
         <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-        <style>
-            body{
-                background-color: black;
-                color: white;
-                font-family: Roboto, Arial;
-                text-align: center  ;
-
-            }
-            .title{
-                font-size: 50px;
-                font-weight: bold;
-                text-align:center;
-            }
-
-
-            .move{
-                width: 150px;
-                height: 150px;
-                background-color: transparent;
-                border: 4px solid;
-                border-color: white;
-                border-radius: 50%;
-                margin:13px;
-                cursor: pointer;
-            }
-            .move:hover{
-                transition: 0.01s;
-                background-color: white;
-            }
-            .move:active{
-                opacity: 0.9;
-            }
-            .icon{
-                width: 75px;
-            }
-            .reset{
-                background-color: white;
-                border: none;
-                font-size: 15px;
-                padding: 8px 15px;
-                cursor: pointer;
-            }
-
-        </style>
+        <link rel="stylesheet" href="styles/styles.css">
     </head>
     <body>
         <p class="title">ROCK PAPER SCISSOR</p>
             <button 
-            
             class = "move" 
             onclick="RPS('Rock')"
-
             ><img class = "icon" src="images/rock-emoji.png"></button>
 
             <button 
-
             class = "move" 
             onclick="RPS('Paper')"
-
             ><img class = "icon" src="images/paper-emoji.png"></button>
 
             <button 
-
             class = "move" 
-            onclick="RPS('Scissor')"
-            
+            onclick="RPS('Scissors')"
             ><img class = "icon" src="images/scissors-emoji.png"></button>
 
 
 
         <p class="jsResult">Result: </p>
-        <p class="jsmove">Your move-  ---  - computer move</p>
+
+        <div class="moveDisplay">
+
+            <p class="jsmove">Your move-</p>
+            <p class="pad"></p>
+            <p class="jsmove">-Computer move</p>
+
+        </div>
         <p class="jsScore"></p>
 
         <button 
         onclick="reset()"
         class="reset"
         
-        >reset score</button>
+        >Reset Score</button>
 
-        <script>
-            let score=JSON.parse(localStorage.getItem(`score`))||{
-                win: 0,
-                loss: 0,
-                tie: 0,
-            }
-
-            function updatescore(){
-                score=JSON.parse(localStorage.getItem(`score`))||{
-                    win: 0,
-                    loss: 0,
-                    tie: 0,
-                }
-                document.querySelector('.jsScore')
-                .innerHTML =` Win:${score.win} Loss:${score.loss} tie:${score.tie}`
-            }
-            function reset(){
-                
-                localStorage.removeItem(`score`); 
-                
-                document.querySelector(`.jsResult`)
-                        .innerHTML = `Result: `
-                
-                document.querySelector(`.jsmove`)
-                    .innerHTML = `Your move-  ---  - computer move`
-                
-                updatescore();
-
-            }
-
-
-            function RPS(playermove){
-                const randomnumber = Math.random();
-
-                let computermove ='';
-                let result='';
-
-
-                if(randomnumber<=1/3)
-                {
-                    computermove = 'Rock';
-                }
-                else if(randomnumber<=2/3){
-                    computermove = 'Paper';
-                }
-                else{
-                    computermove = 'Scissor';
-                }
-                if(playermove==='Rock'){
-
-                    if(computermove==='Rock'){
-                    
-                        result= 'tie';
-                        score.tie++;
-
-                    }
-                    else if(computermove==='Paper'){
-                        result='loss';
-                        score.loss++;
-                    }
-                    else if(computermove === 'Scissor'){
-                        result='win';
-                        score.win++;
-                    }
-                    
-                }
-                else if(playermove==='Paper'){
-                    if(computermove==='Rock'){
-                        result= 'win';
-                        score.win++;
-                    }
-                    else if(computermove==='Paper'){
-                        result='tie';
-                        score.tie++;
-                    }
-                    else if(computermove === 'Scissor'){
-                        result='loss';
-                        score.loss++;
-                    }
-                    
-                }
-                else if(playermove==='Scissor'){
-                    if(computermove==='Rock'){
-                        result= 'loss';
-                        score.loss++
-                    }
-                    else if(computermove==='Paper'){
-                        result='win';
-                        score.win++;
-                    }
-                    else if(computermove === 'Scissor'){
-                        result='tie';
-                        score.tie++;
-                    }
-                }
-                localStorage.setItem('score',JSON.stringify(score));
-
-                document.querySelector(`.jsResult`)
-                    .innerHTML = `Result: ${result}.`
-                
-                document.querySelector(`.jsmove`)
-                    .innerHTML = `Your move-${playermove} --- ${computermove} - computer move`
-                updatescore();
-
-            };
-            updatescore();
-
-        </script>
+        <script src="script/RPS.js"></script>
     </body>
 </html>
